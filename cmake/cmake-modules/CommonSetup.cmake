@@ -59,9 +59,13 @@ macro(CommonSetup)
             if (${CMAKE_CXX_COMPILER_ID} MATCHES "Clang")
                 set(CMAKE_CXX_FLAGS "-stdlib=libc++ -Wno-documentation -Wno-unknown-warning-option ${CMAKE_CXX_FLAGS}")
                 find_package(LLVM REQUIRED CONFIG)
-                set(CXX_EXP_LIB "-L${LLVM_LIBRARY_DIRS} -lc++fs -ferror-limit=10")
+                # https://github.com/microsoft/AirSim/issues/4892#issuecomment-1977043617
+                #   Comrade ben-xD
+                #   `-lc++fs` no longer necessary
+                set(CXX_EXP_LIB "-L${LLVM_LIBRARY_DIRS} -ferror-limit=10")
             else()
-                set(CXX_EXP_LIB "-lstdc++fs -fmax-errors=10 -Wnoexcept -Wstrict-null-sentinel")
+                #   Comrade ben-xD
+                set(CXX_EXP_LIB "-fmax-errors=10 -Wnoexcept -Wstrict-null-sentinel")
             endif ()
         endif ()
 

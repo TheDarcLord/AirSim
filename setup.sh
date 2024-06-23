@@ -47,6 +47,7 @@ else #linux
     sudo apt-get -y install --no-install-recommends \
         lsb-release \
         rsync \
+        libstdc++-12-dev \
         software-properties-common \
         wget \
         libvulkan1 \

@@ -55,6 +55,8 @@ target_link_libraries(airsim_settings_parser AirLib)
 add_library(pd_position_controller_simple src/pd_position_controller_simple.cpp)
 target_link_libraries(pd_position_controller_simple AirLib)
 ament_target_dependencies(pd_position_controller_simple 
+  tf2                 # NEGLECTED BY PREVIOUS AUTHOR - fatal error: tf2/LinearMath/Matrix3x3.h: No such file or directory
+  tf2_geometry_msgs   # NEGLECTED BY PREVIOUS AUTHOR - fatal error: tf2_geometry_msgs/tf2_geometry_msgs.h: No such file or directory
   rclcpp
   nav_msgs
   geometry_msgs
@@ -64,6 +66,10 @@ ament_target_dependencies(pd_position_controller_simple
 add_library(airsim_ros src/airsim_ros_wrapper.cpp)
 target_link_libraries(airsim_ros ${OpenCV_LIBS} yaml-cpp AirLib airsim_settings_parser)
 ament_target_dependencies(airsim_ros 
+  mavros_msgs         # NEGLECTED BY PREVIOUS AUTHOR - fatal error: mavros_msgs/msg/state.hpp: No such file or directory
+  std_srvs            # NEGLECTED BY PREVIOUS AUTHOR - fatal error: std_srvs/srv/empty.hpp: No such file or directory
+  tf2_geometry_msgs   # NEGLECTED BY PREVIOUS AUTHOR - fatal error: tf2_geometry_msgs/tf2_geometry_msgs.h: No such file or directory
+  tf2_sensor_msgs     # NEGLECTED BY PREVIOUS AUTHOR - fatal error: tf2_sensor_msgs/tf2_sensor_msgs.h: No such file or directory
   rclcpp
   sensor_msgs
   geometry_msgs
